@@ -10,6 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import profileSlice from './slices/profile';
 
 const persistConfig = {
   key: CONFIG.appName,
@@ -18,6 +19,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   admin: adminSlice,
+  profile: profileSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -34,5 +36,6 @@ export const store = configureStore({
 
 export type RootState = {
   admin: AdminState;
+  profile: unknown;
 };
 export type AppDispatch = typeof store.dispatch;

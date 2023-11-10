@@ -16,7 +16,6 @@ http.interceptors.request.use(
   (config) => {
     const state: RootState = store.getState();
     const apiToken = state.admin?.token;
-
     if (apiToken) {
       config.headers.Authorization = `Bearer ${apiToken}`;
     }
@@ -32,6 +31,7 @@ http.interceptors.response.use(
     return response;
   },
   (error) => {
+    console.log(error?.response?.status, 'error?.response?.status ');
     if (error?.response?.status === 401) {
       store.dispatch(logout());
     }
