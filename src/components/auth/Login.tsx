@@ -39,12 +39,14 @@ const Login = () => {
 
     defaultHttp
       .post(apiRoutes.login, {
-        email: values.email,
+        username: values.email,
         password: values.password,
       })
       .then((response) => {
+        console.log(response, 'response');
         const admin: Admin = {
-          token: response.data.token,
+          token: response.data.access_token,
+          refreshToken: response.data.refresh_token,
         };
         dispatch(login(admin));
       })
@@ -56,7 +58,7 @@ const Login = () => {
 
   return (
     <Fragment>
-      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-left text-opacity-30 tracking-wide">
+      <h1 className="text-xl font-bold leading-tight text-gray-900 md:text-2xl text-left text-opacity-30 tracking-wide">
         Admin Login
       </h1>
       <Form
