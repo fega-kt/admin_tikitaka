@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Admin } from '../../interfaces/models/admin';
+import { resetStore } from '..';
 
 export type AdminState = Admin | null;
 
@@ -19,6 +20,9 @@ export const adminSlice = createSlice({
 
       return state;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(resetStore, () => initialState);
   },
 });
 

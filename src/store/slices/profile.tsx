@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { resetStore } from '..';
 
 export type ProfileState = unknown;
 
@@ -18,6 +19,9 @@ export const profileSlice = createSlice({
 
     //   return state;
     // },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(resetStore, () => initialState);
   },
 });
 
