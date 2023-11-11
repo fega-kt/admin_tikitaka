@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { toast } from 'sonner';
-
+import { iconError, iconSuccess } from './icon';
 export const API_URL = `http://localhost:3000`;
 export const API_URL_AUTH = `${API_URL}/auth`;
 
@@ -8,18 +8,27 @@ export enum NotificationType {
   ERROR = 'error',
   SUCCESS = 'success',
 }
-
+export enum IconError {
+  ERROR = 'error',
+  SUCCESS = 'success',
+}
 export const setPageTitle = (title: string) => {
   window.document.title = title;
 };
-
+const ICON = {
+  error: iconError,
+  success: iconSuccess,
+};
 export const showNotification = (
   message = 'Something went wrong',
   type: NotificationType = NotificationType.ERROR,
-  description?: string
+  description?: string,
+  icon: IconError = IconError.ERROR
 ) => {
   toast[type](message, {
     description: description,
+    // position: 'top-center',
+    icon: ICON[icon],
   });
 };
 
