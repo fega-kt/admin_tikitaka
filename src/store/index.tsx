@@ -1,4 +1,9 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+export const resetStore = createAction('clear');
+import {
+  combineReducers,
+  configureStore,
+  createAction,
+} from '@reduxjs/toolkit';
 import adminSlice, { AdminState } from './slices/adminSlice';
 import {
   persistReducer,
@@ -23,7 +28,6 @@ const rootReducer = combineReducers({
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
