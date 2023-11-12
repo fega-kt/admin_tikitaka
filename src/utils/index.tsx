@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 import { iconError, iconSuccess } from './icon';
 export const API_URL = `http://localhost:3000`;
 export const API_URL_AUTH = `${API_URL}/auth`;
-
+import i18n from '../i18n/i18n';
 export enum NotificationType {
   ERROR = 'error',
   SUCCESS = 'success',
@@ -22,8 +22,8 @@ const ICON = {
 export const showNotification = (
   message = 'Something went wrong',
   type: NotificationType = NotificationType.ERROR,
-  description?: string,
-  icon: IconError = IconError.ERROR
+  icon: IconError = IconError.ERROR,
+  description?: string
 ) => {
   toast[type](message, {
     description: description,
@@ -33,13 +33,14 @@ export const showNotification = (
   });
 };
 
-export const handleErrorResponse = (
+export const handleNotiResponse = (
   error: any, // eslint-disable-line @typescript-eslint/no-explicit-any
   callback?: () => void,
-  errorMessage?: string
+  errorMessage?: string,
+  type: NotificationType = NotificationType.ERROR
 ) => {
   console.error(error);
-
+  const t = i18n.t;
   if (!errorMessage) {
     errorMessage = 'Something went wrong';
 
@@ -51,18 +52,14 @@ export const handleErrorResponse = (
       }
     }
 
-    if (error instanceof AxiosError && error?.response?.data?.error) {
-      errorMessage = error.response.data.error;
+    if (error instanceof AxiosError && error?.response?.data?.message) {
+      errorMessage = error.response.data.message;
     } else if (error?.message) {
       errorMessage = error.message;
     }
   }
-
-  showNotification(
-    errorMessage &&
-      errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1),
-    NotificationType.ERROR
-  );
+  const icon: IconError = type as unknown as IconError;
+  showNotification(t(errorMessage as string), type, icon);
 
   if (callback) {
     return callback();

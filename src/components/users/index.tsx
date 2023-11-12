@@ -15,7 +15,7 @@ import { User } from '../../interfaces/models/user';
 import { apiRoutes } from '../../routes/api';
 import { webRoutes } from '../../routes/web';
 import {
-  handleErrorResponse,
+  handleNotiResponse,
   NotificationType,
   showNotification,
 } from '../../utils';
@@ -157,7 +157,7 @@ const Users = () => {
 
           actionRef.current?.reloadAndRest?.();
         } catch (error) {
-          handleErrorResponse(error);
+          handleNotiResponse(error);
         }
       },
     });
@@ -201,7 +201,7 @@ const Users = () => {
               total: response.data.total,
             } as RequestData<User>;
           } catch (error) {
-            handleErrorResponse(error);
+            handleNotiResponse(error);
             return {
               data: [],
               success: false,

@@ -4,7 +4,7 @@ import { RootState, resetStore } from '../store';
 // import { webRoutes } from './web';
 import { useCallback } from 'react';
 import { apiRoutes } from './api';
-// import { handleErrorResponse } from '../utils';
+// import { handleNotiResponse } from '../utils';
 import { updateProfile } from '../store/slices/profile';
 import http from '../utils/http';
 export type RequireAuthProps = {
@@ -20,7 +20,6 @@ const RequireAuth = ({ children }: RequireAuthProps) => {
   const handleGetProfile = useCallback(async () => {
     try {
       const data = await http.get(apiRoutes.me);
-      console.log(data);
       if (data.data) {
         dispatch(updateProfile(data.data));
       } else {

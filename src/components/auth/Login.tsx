@@ -6,7 +6,7 @@ import { login } from '../../store/slices/adminSlice';
 import { RootState } from '../../store';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { webRoutes } from '../../routes/web';
-import { handleErrorResponse, setPageTitle } from '../../utils';
+import { handleNotiResponse, setPageTitle } from '../../utils';
 import { Admin } from '../../interfaces/models/admin';
 import { defaultHttp } from '../../utils/http';
 
@@ -51,7 +51,7 @@ const Login = () => {
         dispatch(login(admin));
       })
       .catch((error) => {
-        handleErrorResponse(error);
+        handleNotiResponse(error);
         setLoading(false);
       });
   };

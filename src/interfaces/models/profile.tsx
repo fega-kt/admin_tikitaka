@@ -6,4 +6,5 @@ export interface Profile {
   username: string;
   admin?: boolean;
   online?: boolean;
+  status: number;
 }

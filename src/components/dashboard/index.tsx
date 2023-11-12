@@ -24,7 +24,7 @@ import LazyImage from '../lazy-image';
 import { User } from '../../interfaces/models/user';
 import http from '../../utils/http';
 import { apiRoutes } from '../../routes/api';
-import { handleErrorResponse } from '../../utils';
+import { handleNotiResponse } from '../../utils';
 import { Review } from '../../interfaces/models/review';
 
 const breadcrumb: BreadcrumbProps = {
@@ -47,7 +47,7 @@ const Dashboard = () => {
         setLoading(false);
       })
       .catch((error) => {
-        handleErrorResponse(error);
+        handleNotiResponse(error);
       });
   }, []);
 
@@ -62,7 +62,7 @@ const Dashboard = () => {
         setUsers(response.data.data);
       })
       .catch((error) => {
-        handleErrorResponse(error);
+        handleNotiResponse(error);
       });
   };
 
@@ -90,7 +90,7 @@ const Dashboard = () => {
         );
       })
       .catch((error) => {
-        handleErrorResponse(error);
+        handleNotiResponse(error);
       });
   };
 

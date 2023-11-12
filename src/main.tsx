@@ -10,7 +10,7 @@ import { store } from './store';
 import { injectStore } from './utils/http';
 import App from './App';
 import './index.css';
-
+import './i18n/i18n';
 const persistor = persistStore(store);
 injectStore(store);
 

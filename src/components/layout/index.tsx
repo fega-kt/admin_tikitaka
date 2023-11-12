@@ -8,7 +8,7 @@ import { memo } from 'react';
 import { sidebar } from './sidebar';
 import { apiRoutes } from '../../routes/api';
 import http from '../../utils/http';
-import { handleErrorResponse } from '../../utils';
+import { handleNotiResponse } from '../../utils';
 import { RiShieldUserFill } from 'react-icons/ri';
 import { RootState, resetStore } from '../../store';
 import { Profile } from '../../interfaces/models/profile';
@@ -37,7 +37,7 @@ const Layout = () => {
     });
 
     http.post(apiRoutes.logout).catch((error) => {
-      handleErrorResponse(error);
+      handleNotiResponse(error);
     });
   };
 
