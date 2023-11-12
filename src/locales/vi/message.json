@@ -3,5 +3,6 @@
   "Unauthorized": "Token không hợp lệ",
   "Welcome to React": "Bienvenue à React et react-i18next",
   "Network Error": "Mất kết nối với máy chủ",
-  "User does not exist": "Tài khoản không tồn tại"
+  "User does not exist": "Tài khoản không tồn tại",
+  "Route request not found": "Không tìm thấy yêu cầu định tuyến"
 }

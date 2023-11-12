@@ -3,5 +3,6 @@
   "Unauthorized": "Unauthorized",
   "Welcome to React": "Bienvenue React et react-i18next",
   "Network Error": "Network Error",
-  "User does not exist": "User does not exist"
+  "User does not exist": "User does not exist",
+  "Route request not found": "Route request not found"
 }
