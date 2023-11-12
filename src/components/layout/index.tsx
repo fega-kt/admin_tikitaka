@@ -11,12 +11,13 @@ import http from '../../utils/http';
 import { handleErrorResponse } from '../../utils';
 import { RiShieldUserFill } from 'react-icons/ri';
 import { RootState, resetStore } from '../../store';
+import { Profile } from '../../interfaces/models/profile';
 
 const Layout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const profile = useSelector((state: RootState) => state.profile) as any;
+  const profile = useSelector((state: RootState) => state.profile) as Profile;
 
   const defaultProps: ProLayoutProps = {
     title: CONFIG.appName,
@@ -67,7 +68,7 @@ const Layout = () => {
           className: 'bg-primary bg-opacity-20 text-primary text-opacity-90',
           size: 'small',
           shape: 'square',
-          title: profile?.email || 'admin',
+          title: profile?.username || 'user name',
           render: (_, dom) => {
             return (
               <Dropdown

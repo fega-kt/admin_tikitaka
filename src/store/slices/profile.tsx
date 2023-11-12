@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { resetStore } from '..';
+import { Profile } from '../../interfaces/models/profile';
 
-export type ProfileState = unknown;
+export type ProfileState = Profile | unknown;
 
 const initialState: ProfileState = null;
 
@@ -14,11 +15,6 @@ export const profileSlice = createSlice({
 
       return state;
     },
-    // logout: (state) => {
-    //   state = null;
-
-    //   return state;
-    // },
   },
   extraReducers: (builder) => {
     builder.addCase(resetStore, () => initialState);
