@@ -6,7 +6,13 @@ function App() {
   return (
     <div className="fade-in">
       <RouterProvider router={browserRouter} />
-      <Toaster expand={true} />
+      <Toaster
+        expand={true}
+        position="top-center"
+        closeButton
+        offset={'15px'}
+        richColors
+      />
     </div>
   );
 }

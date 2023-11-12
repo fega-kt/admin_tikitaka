@@ -29,6 +29,7 @@ export const showNotification = (
     description: description,
     // position: 'top-center',
     icon: ICON[icon],
+    duration: 2000,
   });
 };
 
