@@ -22,12 +22,11 @@ const ICON = {
 export const showNotification = (
   message = 'Something went wrong',
   type: NotificationType = NotificationType.ERROR,
-  icon: IconError = IconError.ERROR,
   description?: string
 ) => {
+  const icon: IconError = type as unknown as IconError;
   toast[type](message, {
     description: description,
-    // position: 'top-center',
     icon: ICON[icon],
     duration: 2000,
   });
@@ -58,8 +57,7 @@ export const handleNotiResponse = (
       errorMessage = error.message;
     }
   }
-  const icon: IconError = type as unknown as IconError;
-  showNotification(t(errorMessage as string), type, icon);
+  showNotification(t(errorMessage as string), type);
 
   if (callback) {
     return callback();

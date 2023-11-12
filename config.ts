@@ -7,16 +7,16 @@ enum LayoutType {
 }
 
 const CONFIG = {
-  appName: 'Reforge',
+  appName: 'Tiki Taka', //title web
   helpLink: 'https://github.com/arifszn/reforge',
   enablePWA: true,
   theme: {
     accentColor: '#818cf8',
-    sidebarLayout: LayoutType.MIX,
-    showBreadcrumb: true,
+    sidebarLayout: LayoutType.MIX, // vị trí sidebar
+    showBreadcrumb: true, // có hiện router hay khônh
   },
   metaTags: {
-    title: 'Reforge',
+    title: 'Tiki Taka',
     description:
       'An out-of-box UI solution for enterprise applications as a React boilerplate.',
     imageURL: 'logo.svg',
