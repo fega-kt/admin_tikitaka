@@ -1,14 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 // import { Navigate, useLocation } from 'react-router-dom';
-import { RootState } from '../store';
+import { RootState, resetStore } from '../store';
 // import { webRoutes } from './web';
 import { useCallback } from 'react';
 import { apiRoutes } from './api';
 // import { handleErrorResponse } from '../utils';
-import axios from 'axios';
-import { logout } from '../store/slices/adminSlice';
 import { updateProfile } from '../store/slices/profile';
-
+import http from '../utils/http';
 export type RequireAuthProps = {
   children: JSX.Element;
 };
@@ -19,28 +17,24 @@ const RequireAuth = ({ children }: RequireAuthProps) => {
   const admin = useSelector((state: RootState) => state.admin);
 
   // const location = useLocation();
-  const handleGetProfile = useCallback(() => {
-    axios
-      .get(apiRoutes.me, {
-        headers: {
-          Authorization: `Bearer ${admin?.token}`,
-        },
-      })
-      .then(function (response) {
-        if (response.data) {
-          dispatch(updateProfile(response.data));
-        } else {
-          dispatch(updateProfile(null));
-          dispatch(logout());
-        }
-      })
-      .catch(function () {
-        dispatch(logout());
-      });
+  const handleGetProfile = useCallback(async () => {
+    try {
+      const data = await http.get(apiRoutes.me);
+      console.log(data);
+      if (data.data) {
+        dispatch(updateProfile(data.data));
+      } else {
+        dispatch(resetStore());
+      }
+    } catch (error) {
+      dispatch(resetStore());
+    }
   }, []);
   if (!admin || !admin.token) {
     // return <Navigate to={webRoutes.login} state={{ from: location }} replace />;
-    window.location.href = '/login';
+    dispatch(resetStore());
+    location.href = '/login';
+    return <></>;
   } else {
     handleGetProfile();
   }
