@@ -1,8 +1,12 @@
 {
+  "Error": "Error",
+  "Warning": "Warning",
+  "Success": "Success",
   "Invalid token": "Invalid token",
   "Unauthorized": "Unauthorized",
   "Welcome to React": "Bienvenue React et react-i18next",
   "Network Error": "Network Error",
+  "Network Connected": "Network Connected",
   "User does not exist": "User does not exist",
   "Route request not found": "Route request not found"
 }

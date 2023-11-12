@@ -22,13 +22,14 @@ const ICON = {
 export const showNotification = (
   message = 'Something went wrong',
   type: NotificationType = NotificationType.ERROR,
-  description?: string
+  description?: string,
+  duration = 2000
 ) => {
   const icon: IconError = type as unknown as IconError;
   toast[type](message, {
     description: description,
     icon: ICON[icon],
-    duration: 2000,
+    duration,
   });
 };
 

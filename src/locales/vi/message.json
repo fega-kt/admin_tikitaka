@@ -1,8 +1,12 @@
 {
+  "Error": "Thất bại",
+  "Success": "Thành công",
+  "Warning": "Cảnh báo",
   "Invalid token": "Token không hợp lệ",
   "Unauthorized": "Token không hợp lệ",
   "Welcome to React": "Bienvenue à React et react-i18next",
   "Network Error": "Mất kết nối với máy chủ",
+  "Network Connected": "Internet đã được khôi phục",
   "User does not exist": "Tài khoản không tồn tại",
   "Route request not found": "Không tìm thấy yêu cầu định tuyến"
 }
