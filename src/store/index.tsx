@@ -16,12 +16,14 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import profileSlice from './slices/profile';
+import { Profile } from '../interfaces/models/profile';
 
 const persistConfig = {
   key: CONFIG.appName,
   storage,
+  whitelist: ['admin'], // Specify the reducer to persist
 };
-
+console.log(persistConfig, 'persistConfig');
 const rootReducer = combineReducers({
   admin: adminSlice,
   profile: profileSlice,
@@ -40,6 +42,6 @@ export const store = configureStore({
 
 export type RootState = {
   admin: AdminState;
-  profile: unknown;
+  profile: Profile;
 };
 export type AppDispatch = typeof store.dispatch;
