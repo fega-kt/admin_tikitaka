@@ -64,3 +64,8 @@
     transform: rotate(359deg);
   }
 }
+
+/* reset antd */
+:where(.css-dev-only-do-not-override-1ct5pyf).ant-btn-primary {
+  background-color: #818cf8;
+}
