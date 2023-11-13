@@ -1,33 +1,15 @@
-import {
-  ActionType,
-  ProTable,
-  ProColumns,
-  RequestData,
-  TableDropdown,
-  ProDescriptions,
-} from '@ant-design/pro-components';
-import { Avatar, BreadcrumbProps, Modal, Space } from 'antd';
-import { useCallback, useRef } from 'react';
+import { ProColumns } from '@ant-design/pro-components';
+import { Avatar, BreadcrumbProps, Button } from 'antd';
+import { useMemo } from 'react';
 import { FiUsers } from 'react-icons/fi';
-import { CiCircleMore } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
 import { User } from '../../interfaces/models/user';
 import { apiRoutes } from '../../routes/api';
 import { webRoutes } from '../../routes/web';
-import {
-  handleNotiResponse,
-  NotificationType,
-  showNotification,
-} from '../../utils';
-import http from '../../utils/http';
 import BasePageContainer from '../layout/PageContainer';
 import LazyImage from '../lazy-image';
-import Icon, {
-  ExclamationCircleOutlined,
-  DeleteOutlined,
-} from '@ant-design/icons';
-import { ActionKey } from '../../constants/action';
-
+import TableList from '../tableList';
+import { useTranslation } from 'react-i18next';
 const breadcrumb: BreadcrumbProps = {
   items: [
     {
@@ -42,14 +24,14 @@ const breadcrumb: BreadcrumbProps = {
 };
 
 const Users = () => {
-  const actionRef = useRef<ActionType>();
-  const [modal, modalContextHolder] = Modal.useModal();
+  const { t, i18n } = useTranslation();
 
   const columns: ProColumns[] = [
     {
       title: 'Avatar',
       dataIndex: 'avatar',
       align: 'center',
+      width: 100,
       sorter: false,
       render: (_, row: User) =>
         row.avatar ? (
@@ -65,7 +47,7 @@ const Users = () => {
           />
         ) : (
           <Avatar shape="circle" size="small">
-            {row.first_name.charAt(0).toUpperCase()}
+            {row.username?.charAt(0).toUpperCase()}
           </Avatar>
         ),
     },
@@ -75,7 +57,7 @@ const Users = () => {
       sorter: true,
       align: 'center',
       ellipsis: true,
-      render: (_, row: User) => `${row.first_name} ${row.last_name}`,
+      render: (_, row: User) => `${row.username}`,
     },
     {
       title: 'Email',
@@ -84,140 +66,29 @@ const Users = () => {
       align: 'center',
       ellipsis: true,
     },
-    {
-      title: 'Action',
-      align: 'center',
-      key: 'option',
-      fixed: 'right',
-      render: (_, row: User) => [
-        <TableDropdown
-          key="actionGroup"
-          onSelect={(key) => handleActionOnSelect(key, row)}
-          menus={[
-            {
-              key: ActionKey.DELETE,
-              name: (
-                <Space>
-                  <DeleteOutlined />
-                  Delete
-                </Space>
-              ),
-            },
-            {
-              key: ActionKey.EDIT,
-              name: (
-                <Space>
-                  <DeleteOutlined />
-                  Edit
-                </Space>
-              ),
-            },
-          ]}
-        >
-          <Icon component={CiCircleMore} className="text-primary text-xl" />
-        </TableDropdown>,
-      ],
-    },
   ];
-
-  const handleActionOnSelect = useCallback((key: string, user: User) => {
-    if (key === ActionKey.DELETE) {
-      showDeleteConfirmation(user);
-    }
+  const extraButtons = useMemo(() => {
+    return (
+      <Button type="primary" onClick={() => console.log('Button clicked')}>
+        Add
+      </Button>
+    );
   }, []);
-
-  const showDeleteConfirmation = useCallback((user: User) => {
-    modal.confirm({
-      title: 'Are you sure to delete this user?',
-      icon: <ExclamationCircleOutlined />,
-      content: (
-        <ProDescriptions column={1} title=" ">
-          <ProDescriptions.Item valueType="avatar" label="Avatar">
-            {user.avatar}
-          </ProDescriptions.Item>
-          <ProDescriptions.Item valueType="text" label="Name">
-            {user.first_name} {user.last_name}
-          </ProDescriptions.Item>
-          <ProDescriptions.Item valueType="text" label="Email">
-            {user.email}
-          </ProDescriptions.Item>
-        </ProDescriptions>
-      ),
-      okButtonProps: {
-        className: 'bg-primary',
-      },
-      onOk: async () => {
-        try {
-          await http.delete(`${apiRoutes.users}/${user.id}`);
-          showNotification(
-            'Success',
-            NotificationType.SUCCESS,
-            'User is deleted.'
-          );
-
-          actionRef.current?.reloadAndRest?.();
-        } catch (error) {
-          handleNotiResponse(error);
-        }
-      },
-    });
-  }, []);
+  console.log(t('Once deleted, data cannot be recovered'), i18n.store);
 
   return (
     <BasePageContainer breadcrumb={breadcrumb}>
-      <ProTable
+      <TableList
         columns={columns}
-        cardBordered={false}
-        cardProps={{
-          subTitle: 'Users',
-          tooltip: {
-            className: 'opacity-60',
-            title: 'Mocked data nef',
-          },
-          title: <FiUsers className="opacity-60" />,
-        }}
-        bordered={true}
-        showSorterTooltip={true}
-        scroll={{ x: true }}
-        tableLayout={'fixed'}
-        rowSelection={false}
-        pagination={{
-          showQuickJumper: true,
-          pageSize: 10,
-        }}
-        actionRef={actionRef}
-        request={async (params) => {
-          try {
-            const response = await http.get(apiRoutes.users, {
-              params: {
-                page: params.current,
-                per_page: params.pageSize,
-              },
-            });
-            const users: [User] = response.data.data;
-            return {
-              data: users,
-              success: true,
-              total: response.data.total,
-            } as RequestData<User>;
-          } catch (error) {
-            handleNotiResponse(error);
-            return {
-              data: [],
-              success: false,
-            } as RequestData<User>;
-          }
-        }}
-        dateFormatter="string"
-        search={false}
-        rowKey="id"
-        options={{
-          search: false,
-        }}
+        extraButtons={extraButtons}
+        handleAction={() => console.log('heheh')}
+        title={<FiUsers className="opacity-60" />}
+        urlApi={apiRoutes.users}
+        rowKey={'_id'}
+        contentConfirm={t('Once deleted, data cannot be recovered')}
+        titleConfirm={t('Are you sure to delete this user')}
       />
-      {modalContextHolder}
     </BasePageContainer>
   );
 };
-
 export default Users;
