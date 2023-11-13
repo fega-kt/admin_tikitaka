@@ -1,7 +1,10 @@
-import message_vi from './message.json';
-import local_vi from './local.json';
+import message from './message.json';
+import local from './local.json';
+import popupDelete from './popupDelete.json';
+
 const data = {
-  ...message_vi,
-  ...local_vi,
+  ...message,
+  ...local,
+  ...popupDelete,
 };
 export { data };

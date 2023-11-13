@@ -1,8 +1,11 @@
-import message_en from './message.json';
-import local_en from './local.json';
+import message from './message.json';
+import local from './local.json';
+import popupDelete from './popupDelete.json';
+
 const data = {
-  ...message_en,
-  ...local_en,
+  ...message,
+  ...local,
+  ...popupDelete,
 };
 
 export { data };
