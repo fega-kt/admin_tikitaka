@@ -1,6 +1,6 @@
 //config.ts
 
-enum LayoutType {
+export enum LayoutType {
   MIX = 'mix',
   TOP = 'top',
   SIDE = 'side',
@@ -12,7 +12,7 @@ const CONFIG = {
   enablePWA: true,
   theme: {
     accentColor: '#818cf8',
-    sidebarLayout: LayoutType.MIX, // vị trí sidebar
+    sidebarLayout: LayoutType.SIDE, // vị trí sidebar
     showBreadcrumb: true, // có hiện router hay khônh
   },
   metaTags: {

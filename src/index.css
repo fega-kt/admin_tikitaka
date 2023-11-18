@@ -69,3 +69,27 @@
 :where(.css-dev-only-do-not-override-1ct5pyf).ant-btn-primary {
   background-color: #818cf8;
 }
+:where(
+    .css-dev-only-do-not-override-3vzjvi
+  ).ant-pro-page-container-children-container {
+  padding-inline: 20px;
+}
+:where(.css-dev-only-do-not-override-1ct5pyf).ant-btn-primary:not(
+    :disabled
+  ):not(.ant-btn-disabled):hover {
+  color: #000;
+}
+:where(.css-dev-only-do-not-override-3vzjvi).ant-pro-layout
+  .ant-pro-layout-content {
+  padding-inline: 0px;
+}
+:where(.css-dev-only-do-not-override-3vzjvi).ant-pro-layout
+  .ant-pro-layout-content {
+  padding-block: 0px;
+}
+
+.ant-pro-sider-collapsed-button {
+  position: absolute;
+  z-index: 500;
+  margin-top: -5px;
+}

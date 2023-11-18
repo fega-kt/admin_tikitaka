@@ -1,0 +1,9 @@
+.custom_layout:has(.btn_action_form) .custom_btn_action {
+  display: none;
+}
+
+.btn_action_form {
+  box-shadow: 3px 5px 3px 2px rgba(237, 215, 215, 0.4);
+  -webkit-box-shadow: 3px 5px 3px 2px rgba(237, 215, 215, 0.4);
+  -moz-box-shadow: 3px 5px 3px 2px rgba(237, 215, 215, 0.4);
+}

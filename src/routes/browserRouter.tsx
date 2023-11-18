@@ -20,6 +20,9 @@ const Dashboard = loadable(() => import('../components/dashboard'), {
 const Users = loadable(() => import('../components/users'), {
   fallback: fallbackElement,
 });
+const DetailsUsers = loadable(() => import('../components/detailsUsers'), {
+  fallback: fallbackElement,
+});
 
 export const browserRouter = createBrowserRouter([
   {
@@ -60,6 +63,10 @@ export const browserRouter = createBrowserRouter([
       {
         path: webRoutes.about,
         element: <About />,
+      },
+      {
+        path: webRoutes.detailsUsers,
+        element: <DetailsUsers />,
       },
     ],
   },

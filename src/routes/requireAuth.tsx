@@ -37,7 +37,6 @@ const RequireAuth = ({ children }: RequireAuthProps) => {
   } else {
     handleGetProfile();
   }
-
   return children;
 };
 

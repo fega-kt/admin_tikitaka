@@ -210,7 +210,7 @@ const Dashboard = () => {
                         }
                       />
                     }
-                    title={`${user.first_name} ${user.last_name}`}
+                    title={`${user.username} `}
                     description={user.email}
                   />
                 </List.Item>

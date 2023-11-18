@@ -12,7 +12,8 @@ import { handleNotiResponse } from '../../utils';
 import { RiShieldUserFill } from 'react-icons/ri';
 import { RootState, resetStore } from '../../store';
 import { Profile } from '../../interfaces/models/profile';
-
+import './index.scss';
+import { LayoutType } from '../../../config';
 const Layout = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,9 +41,11 @@ const Layout = () => {
       handleNotiResponse(error);
     });
   };
-
+  const listUrlHasHeaderProfile = ['dashboard', 'users'];
+  const pathname = location.pathname?.replace(/^\/+|\/+$/g, ''); // xóa tất cả ký tự '/' đầu và sau cùng
+  const hasHeaderProfile = !!listUrlHasHeaderProfile.includes(pathname);
   return (
-    <div className="h-screen">
+    <div className="h-screen custom_layout">
       <ProLayout
         {...defaultProps}
         token={{
@@ -50,6 +53,8 @@ const Layout = () => {
             colorMenuBackground: 'white',
           },
         }}
+        layout={hasHeaderProfile ? LayoutType.MIX : LayoutType.SIDE}
+        menuHeaderRender={undefined}
         location={location}
         onMenuHeaderClick={() => navigate(webRoutes.dashboard)}
         menuItemRender={(item, dom) => (
@@ -65,13 +70,14 @@ const Layout = () => {
         )}
         avatarProps={{
           icon: <Icon component={RiShieldUserFill} />,
-          className: 'bg-primary bg-opacity-20 text-primary text-opacity-90',
+          className: 'bg-primary bg-opacity-20 text-primary text-opacity-90 ',
           size: 'small',
           shape: 'square',
           title: profile?.username || 'user name',
           render: (_, dom) => {
             return (
               <Dropdown
+                className="custom_btn_action"
                 menu={{
                   items: [
                     {

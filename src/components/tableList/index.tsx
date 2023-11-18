@@ -30,7 +30,7 @@ interface Details {
 }
 interface TableProps {
   columns: ProColumns[];
-  extraButtons: JSX.Element;
+  extraButtons?: JSX.Element;
   handleAction?: () => void;
   renderTitleAction?: JSX.Element;
   subTitle?: string;

@@ -1,8 +1,8 @@
 import { ProColumns } from '@ant-design/pro-components';
-import { Avatar, BreadcrumbProps, Button } from 'antd';
-import { useMemo } from 'react';
+import { Avatar, BreadcrumbProps } from 'antd';
+import { useCallback } from 'react';
 import { FiUsers } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { User } from '../../interfaces/models/user';
 import { apiRoutes } from '../../routes/api';
 import { webRoutes } from '../../routes/web';
@@ -24,7 +24,8 @@ const breadcrumb: BreadcrumbProps = {
 };
 
 const Users = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const columns: ProColumns[] = [
     {
@@ -67,21 +68,15 @@ const Users = () => {
       ellipsis: true,
     },
   ];
-  const extraButtons = useMemo(() => {
-    return (
-      <Button type="primary" onClick={() => console.log('Button clicked')}>
-        Add
-      </Button>
-    );
-  }, []);
-  console.log(t('Once deleted, data cannot be recovered'), i18n.store);
 
+  const handleAction = useCallback(() => {
+    navigate('add');
+  }, []);
   return (
     <BasePageContainer breadcrumb={breadcrumb}>
       <TableList
         columns={columns}
-        extraButtons={extraButtons}
-        handleAction={() => console.log('heheh')}
+        handleAction={handleAction}
         title={<FiUsers className="opacity-60" />}
         urlApi={apiRoutes.users}
         rowKey={'_id'}
