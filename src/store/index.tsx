@@ -5,6 +5,8 @@ import {
   createAction,
 } from '@reduxjs/toolkit';
 import adminSlice, { AdminState } from './slices/adminSlice';
+import settingSlice, { SettingState } from './slices/settingSlice';
+
 import {
   persistReducer,
   FLUSH,
@@ -26,6 +28,7 @@ const persistConfig = {
 console.log(persistConfig, 'persistConfig');
 const rootReducer = combineReducers({
   admin: adminSlice,
+  setting: settingSlice,
   profile: profileSlice,
 });
 
@@ -43,5 +46,6 @@ export const store = configureStore({
 export type RootState = {
   admin: AdminState;
   profile: Profile;
+  setting: SettingState;
 };
 export type AppDispatch = typeof store.dispatch;
