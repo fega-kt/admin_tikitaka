@@ -31,7 +31,7 @@ http.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log(error?.response?.status, 'error?.response?.status ');
+    console.log(error?.response?.status, 'error ');
     if (error?.response?.status === 401) {
       store.dispatch(logout());
     }

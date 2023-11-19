@@ -1,1 +1,5 @@
-{}
+{
+  "male": "Male",
+  "female": "Female",
+  "gender_other": "Gender other"
+}

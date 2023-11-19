@@ -6,4 +6,5 @@ export const apiRoutes = {
   logout: `${API_URL}/logout`,
   users: `${API_URL}/users`,
   reviews: `${API_URL}/unknown`,
+  upload: `${API_URL}/upload`,
 };

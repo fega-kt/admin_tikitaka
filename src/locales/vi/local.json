@@ -1,1 +1,5 @@
-{}
+{
+  "male": "Nam",
+  "female": "Nữ",
+  "gender_other": "Giới tính khác"
+}
