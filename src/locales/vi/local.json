@@ -1,5 +1,8 @@
 {
   "male": "Nam",
   "female": "Nữ",
-  "gender_other": "Giới tính khác"
+  "gender_other": "Giới tính khác",
+  "vi": "Tiếng việt",
+  "en": "Tiếng anh",
+  "logout": "Đăng xuất"
 }

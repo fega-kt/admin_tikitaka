@@ -4,7 +4,7 @@ import loginBg from '../../assets/img/login-bg.png';
 const AuthLayout = () => {
   return (
     <div className="relative">
-      <div className="absolute inset-x-0 -top-48 -bottom-14 overflow-hidden bg-indigo-50">
+      <div className="absolute inset-x-0 -top-48 -bottom-14 overflow-hidden bg-indigo-50 h-full">
         <img
           alt=""
           src={loginBg}

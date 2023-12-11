@@ -1,5 +1,8 @@
 {
   "male": "Male",
   "female": "Female",
-  "gender_other": "Gender other"
+  "gender_other": "Gender other",
+  "vi": "VietNamese",
+  "en": "English",
+  "logout": "Log out"
 }

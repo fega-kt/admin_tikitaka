@@ -77,7 +77,7 @@ const Users = () => {
       <TableList
         columns={columns}
         handleAction={handleAction}
-        title={<FiUsers className="opacity-60" />}
+        // title={<FiUsers className="opacity-60" />}
         urlApi={apiRoutes.users}
         rowKey={'_id'}
         contentConfirm={t('Once deleted, data cannot be recovered')}

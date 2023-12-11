@@ -37,7 +37,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { Gender } from '../../constants/constants';
 import { useTranslation } from 'react-i18next';
-import http, { defaultHttp } from '../../utils/http';
+import http from '../../utils/http';
 import { Profile } from '../../interfaces/models/profile';
 
 const breadcrumb: BreadcrumbProps = {
